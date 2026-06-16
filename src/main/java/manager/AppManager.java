@@ -25,7 +25,7 @@ public class AppManager {
     Logger logger = LoggerFactory.getLogger(AppManager.class);
     static String browser = System.getProperty("browser", Browser.CHROME.browserName());
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup(Method method){
         //driver = new ChromeDriver();
         if(browser.equals(Browser.CHROME.browserName())){
@@ -43,7 +43,7 @@ public class AppManager {
         driver = new EventFiringDecorator<>(webDriverListener).decorate(driver);
     }
 
-    @AfterMethod()
+    @AfterMethod(alwaysRun = true)
     public void tearDown(Method method){
         if(driver !=null){
             driver.quit();

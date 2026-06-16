@@ -52,3 +52,22 @@ tasks.register('qa1', Test) {
         systemProperty 'browser', "${browser}"
     }
 }
+
+tasks.register('scope', Test) {
+    useTestNG() {
+        suites 'src/test/resources/scope.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+}
+
+tasks.register('groups', Test) {
+    useTestNG() {
+        def groups = System.getProperty('groups')
+        if(groups != null){
+            includeGroups groups
+        }
+        suites 'src/test/resources/base.xml'
+    }
+}

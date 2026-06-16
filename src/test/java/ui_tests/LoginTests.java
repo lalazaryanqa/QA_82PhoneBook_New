@@ -17,7 +17,7 @@ import static utils.PropertiesReader.getProperty;
 public class LoginTests extends AppManager {
     SoftAssert softAssert = new SoftAssert();
 
-    @Test
+    @Test(groups = {"smoke", "regress", "user", "positive"})
     public void loginPositiveTest() {
         User user = User.builder()
                 .username(getProperty("base.properties", "email"))

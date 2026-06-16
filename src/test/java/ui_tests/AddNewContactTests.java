@@ -26,7 +26,7 @@ public class AddNewContactTests extends AppManager {
     int countOfContacts;
     SoftAssert softAssert = new SoftAssert();
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         User user = User.builder()
                 .username(getProperty("base.properties", "email"))
@@ -41,7 +41,7 @@ public class AddNewContactTests extends AppManager {
         contactsPage.clickBtnAdd();
     }
 
-    @Test
+    @Test(groups = {"smoke", "contact", "regress"})
     public void addNewContactPositiveTest() {
         addPage = new AddPage(getDriver());
         addPage.typeAddNewContactForm(positiveContact());

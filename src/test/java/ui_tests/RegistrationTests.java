@@ -20,7 +20,7 @@ import static utils.UserFactory.positiveUser;
 public class RegistrationTests extends AppManager {
     LoginPage loginPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void goToLoginRegistrationPage() {
         new HomePage(getDriver()).clickBtnLogin();
         loginPage = new LoginPage(getDriver());
@@ -40,7 +40,7 @@ public class RegistrationTests extends AppManager {
                 .validateTextInNoContactMessage("No Contacts here!"));
     }
 
-    @Test
+    @Test(groups = {"smoke", "user"})
     public void registrationPositiveTestWithFaker() {
         User user = positiveUser();
         System.out.println(user);
